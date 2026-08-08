@@ -1,0 +1,39 @@
+stock_prices = {
+    "AAPL": 180,
+    "TSLA": 250,
+    "GOOGL": 140,
+    "AMZN": 175,
+    "MSFT": 400
+}
+
+def stock_tracker():
+    print("--- Stock Portfolio Tracker ---")
+    print("Available stocks:", ", ".join(stock_prices.keys()))
+    print("-" * 32)
+    stock_name = input("Enter stock symbol (e.g., AAPL): ").strip().upper()
+    if stock_name not in stock_prices:
+        print("Stock symbol not found!")
+        return
+    try:
+        quantity = int(input(f"Enter number of shares for {stock_name}: "))
+    except ValueError:
+        print("Please enter a valid whole number for quantity.")
+        return
+    price_per_share = stock_prices[stock_name]
+    total_value = price_per_share * quantity
+    print("\n--- Summary ---")
+    print(f"Stock: {stock_name}")
+    print(f"Price per Share: ${price_per_share}")
+    print(f"Quantity: {quantity}")
+    print(f"Total Investment Value: ${total_value}")
+    save_option = input("\nWould you like to save this summary to a text file? (y/n): ").strip().lower()
+    if save_option == 'y':
+        with open("portfolio_summary.txt", "w") as file:
+            file.write("--- Stock Portfolio Summary ---\n")
+            file.write(f"Stock: {stock_name}\n")
+            file.write(f"Price per Share: ${price_per_share}\n")
+            file.write(f"Quantity: {quantity}\n")
+            file.write(f"Total Value: ${total_value}\n")
+        print("Saved successfully to 'portfolio_summary.txt'!")
+if __name__ == "__main__":
+    stock_tracker()

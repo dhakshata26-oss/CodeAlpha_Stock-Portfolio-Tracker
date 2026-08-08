@@ -1,0 +1,5 @@
+--- Stock Portfolio Summary ---
+Stock: GOOGL
+Price per Share: $140
+Quantity: 45
+Total Value: $6300
